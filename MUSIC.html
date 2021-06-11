@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐主页</title>
+    <link rel="stylesheet" type="text/css" href="./css/MUSIC.css"/>
+</head>
+<body>
+    <div id="musicdiv">
+        <!--辅助框-->
+        <div class="ss" v-show="ss">
+            <p style="height:10%"></p>搜
+            <p></p>索
+            <p></p>区
+        </div>
+        <div class="backgroud">
+            <div class="backgroud1">
+                <transition-group tag="ul" name="image">
+                    <li v-for="(items,index) in list"   v-show="index===num" :key="index"  >
+                        <img :src="items" alt="">
+                        <div>
+                        <span v-for="(items,index) in data" class="nav" @click="changelb(index)" :class="{'active':index==num}">{{items}}</span>
+                        </div>
+                    </li>
+                </transition-group>
+            </div>
+            
+            <div class="gc" v-show="pl">
+                <p style="height:10%"></p>
+                歌&nbsp&nbsp词&nbsp&nbsp区
+
+            </div>
+            <div class="pl" v-show="pl"> 
+                <p style="height:10%"></p>评
+                <p></p>论
+                <p></p>区
+            </div>
+        </div>
+        <!--隐藏框-->
+        <div class="showdiv"  ref="showdiv">
+            
+
+        </div>
+        <!--图标框-->
+        <div class="musicperson">
+            <img src="./image/preson.jpg" alt="">
+    
+        </div>
+        <!--导航框-->
+        <div class="navigate"  >
+            <a href="./首页.html" >首页</a>
+            <a href="./image.html">推荐</a>
+            <a href="./picture.html">写真</a>
+
+        </div>
+        <div   class="lunbo">
+            <!--实现轮播滚动-->
+            <transition-group tag="ul" name="image">
+                <li v-for="(items,index) in list" v-on:mouseover="stoplb()" v-on:mouseout="movelb()" v-show="index===num" :key="index"  >
+                    <img :src="items" alt="">
+                    <div>
+                    <span v-for="(items,index) in data" class="nav" @click="changelb(index)" :class="{'active':index==num}">{{items}}</span>
+                    </div>
+                </li>
+            </transition-group>
+             
+         </div>
+         <div class="left">
+        <!--搜索框-->
+        <div class="_textparent">
+            <label @click="getmusic" class="sousuo"><img src="./image/搜索图标.jpg"></label>
+            
+        <input type="text" v-model="message" class="_text"  @keyup.enter="getmusic"/>
+        
+        </div>
+        <div class="_list">
+            <!--搜索列表-->
+            <ul >
+                <li v-for="item in musiclist">
+                    <!--href为JavaScript:;表示执行空的js代码，一定要这样写，如果不填为空的时候会跳到空白页面-->
+                    <a href="javascript:;" @click="playmusic(item.id)">{{item.name}}</a>
+                    <span v-if="item.mvid!=0" @click="playmv(item.mvid)"><i>mv</i></span>
+         
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!--图片框-->
+        <div class="_musicpic" :class="{playing:isplaying}">
+            <!--使用css让图片可旋转-->
+            <img :src="musicpicture" class="_picbackgroud" />
+           
+            <!--歌词框-->
+            <div class="musiclyric">
+                
+                <div class="turemusiclyric" ref="turemusiclyric">
+                <li v-for="(item,index) in lyric" :key="index" 
+                :style="{'font-size':(index==currentRow?'large':'x-small') ,'color':(index==currentRow?'white':'black')}">
+                    {{item.text}}
+            
+                </li>
+                </div>
+
+            </div>
+
+        </div>
+        <!--评论框-->
+        <div class="comments" >
+            <li v-for="item in hotcomments">
+            {{item.content}}
+
+            </li>
+        </div>
+        <!--audio标签-->
+        <div class="btn-audio clear">
+            <img :src="musicpicture" alt="" class="lf1" style="width:10% ; height: 100%;float: left;">
+           
+            <img src="image/preson.jpg"  alt="" style="width: 1rem;position: absolute;bottom: 0.5rem;right: 0.5rem;">
+            <div class="mp3Box" @click="audiochange">
+                <audio 
+                ref='audio' :src="musicurl"  @play="play" @pause="pause"  @timeupdate="updateTime"  autoplay loop='false' id="_audio" >
+                <source :src="musicurl" type="audio/mpeg" />
+                </audio>
+            </div>
+            <div class="if">
+        
+                <p style="font-size: 1.5rem; width: 100%;height: 100%;;color: #888; margin: 0 0 0 1.2rem;text-align: center;line-height: 50px;">{{musicname}}&nbsp&nbsp&nbsp{{musicpname}}</p>
+                
+            </div>
+        </div>
+        
+        <div  class="_video" v-show="isshow" style="display: none;">
+        <!--视频框-->
+            <video :src="mvurl" v-if="isshow" controls="controls" class="mv">
+
+            </video>
+        <!--关闭按钮，按下隐藏视频框-->
+           <div class="dask"@click="hide">
+               关闭
+
+           </div>
+       
+        </div>
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        app=new Vue({
+            el:"#musicdiv",
+            data:{
+                message:"",
+                musicname:"",
+                musicpname:"",
+                musiclist:[],
+                musicurl:"",
+                musicpicture:"./image/preson.jpg",
+                hotcomments:[],
+                isplaying:false,
+                isshow:false,
+                mvurl:"",
+                lyric:[],
+                currentTime:0,
+                duration:0,
+                currentRow:0,
+                //轮播数据
+                data:['1','2','3'],
+                time:'',
+                num:0,
+                list:["./image/薛之谦背景.jpg","./image/iu专辑.jpg","./image/戳爷.jpg"],
+                //辅助框评论区控制
+                pl:true,
+                ss:true,
+
+            },
+            //实现歌词滚动
+            watch: {
+                
+                currentTime(n,o){
+                this.lyric.forEach((element, index) => {
+                if (Math.ceil(this.currentTime) == element.time) {
+                    this.$refs.turemusiclyric.style.top=-index*50+100+'px';
+                    this.currentRow=index
+                }})
+            }},
+            
+            // 使用 methods ，在重新渲染的时候，函数总会重新调用执行
+            methods:{
+                audiochange:function(){
+                    var audio = document.getElementById('_audio');
+                    event.stopPropagation();//防止冒泡
+                    if(audio.paused){ //如果当前是暂停状态
+                     $('.mp3Box').css({'background':'url(image/播放按钮.jpg) no-repeat center bottom','background-size':'cover'})
+                   audio.play(); //播放
+                    }
+                    else{//当前是播放状态
+                 $('.mp3Box').css({'background':'url(image/暂停按钮.png) no-repeat center bottom','background-size':'cover'});
+                 audio.pause(); //暂停
+            }
+
+                },
+
+                updateTime(e){
+                    this.currentTime=e.target.currentTime;
+                },
+
+                /*回车搜索框获取音乐*/
+                getmusic:function(){
+                    var that=this;
+                    that.ss=false;
+                    axios.get("https://autumnfish.cn/search?keywords="+this.message)
+                    .then(function(response){
+                        console.log(response.data.result.songs)
+                        that.musiclist=response.data.result.songs;
+                        
+
+                    })
+
+                },
+
+                /*点击列表里的音乐，触发图片，radio和评论显示*/
+                playmusic:function(musicid){
+                    
+                    var that=this;
+                    axios.get("https://autumnfish.cn/song/url?id="+musicid)
+                    .then(function(response){
+                       
+                        that.musicurl=response.data.data[0].url;
+                    },function(err){
+                        
+                    })
+                    axios.get("https://autumnfish.cn/song/detail?ids="+musicid)
+                    .then(function(response){
+                        console.log(response);
+                        that.musicpname=response.data.songs[0].ar[0].name
+                        that.musicname=response.data.songs[0].name;
+                        that.musicpicture=response.data.songs[0].al.picUrl;
+                        console.log(response.data.songs[0].al.picUrl)
+                    },function(err){
+                        
+                    })
+                    axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicid)
+                    .then(function(response){
+                        that.pl=false;
+                        that.hotcomments=response.data.hotComments;
+                    },function(err){
+                        
+                    })
+                    axios.get("https://autumnfish.cn///lyric?id="+musicid)
+                    .then(function(response){
+                        that.lyric=[];
+                        that.formatLyric(response.data.lrc.lyric)
+                    
+
+                    })
+                },
+
+                /*audio按键play开始播放*/
+                play:function(){
+                    this.isplaying=true;
+
+                },
+
+                /*audio按键pause暂停播放*/
+                pause:function(){
+                    this.isplaying=false;
+
+                },
+
+                // mv视频播放
+                playmv:function(mvid){
+                    console.log(mvid);
+                    var that=this;
+                    axios.get("https://autumnfish.cn/mv/url?id="+mvid)
+                    .then(function(response){
+                        console.log(response)
+                        that.isshow=true;
+                        that.mvurl=response.data.data.url;
+
+                    })
+                },
+
+                // mv视频隐藏
+                hide: function(){
+                    this.isshow=false;
+                    console.log("1")
+
+                },
+
+                //处理从网易云api返回的歌词
+
+                formatLyric:function(text) {
+                var that=this;
+                let arr = text.split("["); 
+                let row = arr.length; //获取歌词行数
+                for (let i = 0; i < row; i++) {
+                let temp_row = arr[i]; //现在每一行格式大概就是这样"[02:10.00]hello world";
+                let temp_arr = temp_row.split("]");//我们可以通过“]”对时间和文本进行分离
+                if(temp_arr.length!=1&&temp_arr[1].toString()!="\n"){//判断歌词是否只有一个换行符号
+                    
+                let text = temp_arr.pop(); //把歌词文本从数组中剔除出来，获取到歌词文本了！
+                //再对剩下的歌词时间进行处理
+                
+                temp_arr.forEach(element => {
+                let obj = {};
+                let time_arr = element.substr(1, element.length - 1).split(":");//先把多余的“[”去掉，再分离出分、秒
+                let s = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
+                obj.time = s;
+                obj.text = text;
+                that.lyric.push(obj); //每一行歌词对象存到组件的lyric歌词属性里
+                
+                    });}
+                }
+                that.lyric.sort(); 
+                
+                },
+                //轮播的方法
+                playlb(){
+                this.time=setInterval(()=>{
+                    this.num++;
+                    if(this.num==3){
+                        this.num=0
+                    }
+
+                },2000)
+                },
+                changelb(i){
+                this.num=i
+                },
+                stoplb(){
+                clearInterval(this.time)
+                },
+                movelb(){
+                this.playlb();
+                }
+                
+
+
+            },
+            created(){
+            this.playlb();
+        },
+            
+
+        })
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        //鼠标移上图标框显示隐藏框
+        $(".musicperson").mouseover(function(){
+            
+            $(".showdiv").slideDown();
+            $(".showdiv").css("display","block");
+            
+        })
+        $(".showdiv").mouseout(function(){
+            
+            $(".showdiv").slideUp();
+            $(".showdiv").css("display","block");
+            
+        })
+        $(".navigate").mouseover(function(){
+            
+            $(".showdiv").slideUp();
+            $(".showdiv").css("display","none");
+            
+        })
+       
+    
+    </script>
+</body>
+</html>

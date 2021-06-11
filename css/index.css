@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+
+/*整体区域一：头部导航栏*/
+
+.header {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+
+/*导航栏1*/
+
+.header>.navigate {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: x-large;
+    line-height: 50px;
+    background-color: black;
+}
+
+.header>.navigate a {
+    text-decoration: none;
+    margin: 6rem;
+    color: #FFFFFF;
+}
+
+
+/*搜索区域*/
+
+.left {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 99999;
+}
+
+
+/* 搜索框 */
+
+._textparent {
+    position: absolute;
+    top: 12.5px;
+    width: 20%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+
+._textparent>.sousuo {
+    position: relative;
+    width: 22px;
+    height: 23px;
+    margin: 1rem;
+}
+
+._textparent>.sousuo img {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 35px;
+    height: 20px;
+    border-radius: 50%;
+    /*把图片设置为圆形*/
+}
+
+
+/* 搜索input框 */
+
+._textparent>._text {
+    width: 60%;
+    height: 20px;
+}
+
+
+/* 搜索列表 */
+
+.left>._list {
+    position: fixed;
+    left: 0px;
+    width: 100%;
+    height: 50%;
+    top: 50px;
+    overflow: auto;
+}
+
+.left>._list li {
+    list-style-type: circle;
+    font-size: small;
+    cursor: pointer;
+    margin: 1.5rem;
+    color: white;
+}
+
+.left>._list a {
+    text-decoration: none;
+    color: white;
+}
+
+.left>._list span {
+    color: red;
+}
+
+
+/*音乐盒样式*/
+
+.btn-audio {
+    left: 10%;
+    bottom: 0;
+    width: 80%;
+    height: 40px;
+    border: 1px solid #ebebeb;
+    background-color: #fdfdfd;
+    margin-top: 1rem;
+    position: fixed;
+    z-index: 99;
+    border: 1px black;
+}
+
+.btn-audio>.mp3Box {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    background: url("image/暂停按钮.png") no-repeat center bottom;
+    background-size: cover;
+    z-index: 100;
+    opacity: 0.8;
+    border-radius: 20%;
+}
+
+.btn-audio>.if {
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+
+
+/* mv视频样式 */
+
+._video {
+    position: fixed;
+    bottom: 40px;
+    right: 120px;
+    width: 1108px;
+    height: 300px;
+    display: flex;
+    z-index: 999;
+}
+
+
+/*mv框里面的视频*/
+
+._video>.mv {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*设置关闭视频按钮样式*/
+
+._video>.dask {
+    position: fixed;
+    top: 44%;
+    right: 408px;
+    width: 50px;
+    height: 40px;
+    background-color: black;
+    text-align: center;
+    line-height: 40px;
+    color: wheat;
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 999;
+}
+
+
+/*歌曲封面歌词部分*/
+
+._musicpic {
+    width: 100%;
+    height: 300px;
+    margin-top: 320px;
+}
+
+
+/*歌曲封面滚动图*/
+
+._musicpic>._picbackgroud {
+    width: 200px;
+    height: 200px;
+    left: 500px;
+    border-radius: 50%;
+    /*把图片设置为圆形*/
+    border: 4px solid grey;
+    margin: 0.4rem;
+    z-index: 20;
+}
+
+
+/*滚动行为*/
+
+.playing img {
+    /*设置animation函数让图片旋转，img后还可加伪类hover，onclick，active等可以定义鼠标触发animation*/
+    animation: rot_test 3s infinite linear;
+    /*infinite和linear确保旋转不停下来*/
+}
+
+@keyframes rot_test {
+    /*@keyframes定义关键帧，改变图片角度*/
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*歌词框*/
+
+._musicpic>.musiclyric {
+    position: absolute;
+    overflow: hidden;
+    top: 370px;
+    width: 574.5px;
+    height: 300px;
+    text-align: center;
+}
+
+
+/*歌词框架*/
+
+._musicpic>.musiclyric>.turemusiclyric {
+    position: absolute;
+    top: 100px;
+    width: 300px;
+    color: #FFFFFF;
+}
+
+
+/*每一行歌词*/
+
+._musicpic>.musiclyric li {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    width: 547.5px;
+}
+
+
+/*评论区域*/
+
+.comments {
+    position: absolute;
+    left: 774.5px;
+    top: 370px;
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 300px;
+    width: 574.5px;
+    opacity: 0.8;
+    padding: 0;
+}
+
+
+/*评论区每一行*/
+
+.comments li {
+    list-style-type: circle;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+
+/*导航栏2*/
+
+.header>.musicperson {
+    position: absolute;
+    z-index: 50;
+    width: 80px;
+    height: 50px;
+    top: 0;
+    right: 10%;
+}
+
+.header>.musicperson img {
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+
+
+/*下拉隐藏框*/
+
+.header>.showdiv {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 300px;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 50;
+    display: none;
+}
+
+
+/*整体区域二：轮播图*/
+
+.lunbo {
+    height: 320px;
+    width: 100%;
+    position: relative;
+}
+
+
+/*swiper轮播图*/
+
+.swiper-container {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    background-size: 100% 300px;
+    background-position: center;
+}
+
+.gallery-top {
+    height: 80%;
+    width: 100%;
+}
+
+.gallery-top>.swiper-slide {
+    height: 80%;
+    width: 100%;
+}
+
+.gallery-thumbs {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 5px 0;
+}
+
+.gallery-thumbs .swiper-slide {
+    height: 100%;
+    opacity: 0.4;
+    background-size: cover;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+
+/*整体区域三：歌曲、歌词、评论*/
+
+.kong {
+    width: 100%;
+    height: 300px;
+    background-image: url('./image/背景.jpg');
+}
+
+
+/*整体区域四：歌手*/
+
+.picture {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    background-color: pink;
+}
+
+.hot {
+    height: 50px;
+    width: 100%;
+    background-color: purple;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: x-large;
+}
+
+.bottom1 {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom2 {
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom1 img {
+    width: 140px;
+    height: 140px;
+    margin: 1rem;
+    opacity: 0.8;
+    border-radius: 50%;
+    /*把图片设置为圆形*/
+}
+
+.bottom2 img {
+    width: 140px;
+    height: 140px;
+    margin: 1rem;
+    opacity: 0.8;
+    border-radius: 30%;
+    /*把图片设置为椭圆形*/
+}

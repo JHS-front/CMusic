@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+}
+::-webkit-scrollbar{/*没有滚动条也能滚动*/
+    display: none
+}
+
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#app{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding:0;
+    width: 100%;
+    height:100%;
+    background-color:#FFFFFF;
+    
+}
+/*辅助框轮播*/
+#app>.backgroud>.backgroud1{
+    position: absolute;
+    top:50px;
+    opacity: 1;
+
+    width: 100%;
+    height:320px;
+
+}
+#app>.backgroud>.backgroud1 img{
+    width: 100%;
+    height: 100%;
+}
+#app>.backgroud>.backgroud1 li{
+    width: 100%;
+    height: 100%;
+    
+    color: white;
+    position: absolute;
+}
+#app>.backgroud>.backgroud1 ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.backgroud>.backgroud1>.nav{
+    background-color: #c3c3c3;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+   padding: 0 8px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+.backgroud>.backgroud1>.active{
+    opacity: 1;
+}
+#app>.backgroud>.backgroud1 li div{
+    margin-top: -30px;
+}
+.backgroud>.backgroud1>.image-enter-active {
+    transition: all 1s linear
+}
+.backgroud>.backgroud1>.image-leave-active {
+    transition: all 1s linear;
+}
+.image-enter-to {
+    transform: translateX(0);
+}
+.image-enter {
+    transform: translateX(100%);
+}
+.image-leave {
+    transform: translateX(0);
+}
+.image-leave-to {
+    transform: translateX(-100%);
+}
+/*辅助框轮播结束地方*/
+#app>.backgroud{
+    width:100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    z-index: -1;
+}
+#app>.showdiv{
+    position: absolute;
+    top:50px;
+    width: 100%;
+    height: 50%;
+    background-color:#000000;
+    opacity: 0.5;
+    z-index: 50;
+    display: none;
+}
+#app>.musicperson{
+    position: absolute;
+    z-index: 50;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    right: 20%;
+}
+#app>.musicperson img{
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+.musicdiv>.navigate{
+    position: absolute;
+    top:0;
+    width:100%;
+    height: 50px;
+    text-align: center;
+    font-size: x-large;
+    line-height: 50px;
+    background-color:#000000;
+
+}
+.musicdiv>.navigate a{
+    text-decoration: none;
+    margin: 6rem;
+    color:#FFFFFF;
+    
+    
+}
+.app{
+    position: absolute;
+    top:50px;
+    height: 320px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    
+    
+
+}
+.tuijian{
+    position: absolute;
+    top:50px;
+    height: 70%;
+    width: 100%;
+
+    
+    
+}
+.tuijian>.tj{
+    position: absolute;
+    top:320px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.tuijian>.tj>.tj_head{
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: x-large;
+}
+.tuijian>.tj>.tj_bottom1{
+    position: absolute;
+    top:50px;
+    width:100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+
+}
+.tuijian>.tj>.tj_bottom2{
+    position: absolute;
+    top:250px;
+    width:100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+
+}
+.tuijian>.tj>.tj_bottom1 img{
+    width: 140px;
+    height: 140px;
+    margin: 1rem;
+    opacity: 0.8;
+    border-radius: 50%;/*把图片设置为圆形*/
+}
+.tuijian>.tj>.tj_bottom2 img{
+    width: 140px;
+    height: 140px;
+    margin: 1rem;
+    opacity: 0.8;
+    border-radius: 30%;/*把图片设置为椭圆形*/
+}
+#app>.app img{
+    width: 500px;
+    height: 300px;
+    opacity: 1;
+}
+#app>.app li{
+    width: 500px;
+    height: 300px;
+    border: 5px solid white;
+    color: white;
+    position: absolute;
+}
+#app>.app ul{
+    width: 520px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+   
+    
+}
+.nav{
+    background-color: #c3c3c3;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+   padding: 0 8px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+.active{
+    opacity: 1;
+}
+li div{
+    margin-top: -30px;
+}
+.image-enter-active {
+    transition: all 1s linear
+}
+.image-leave-active {
+    transition: all 1s linear;
+}
+.image-enter-to {
+    transform: translateX(0);
+}
+.image-enter {
+    transform: translateX(100%);
+}
+.image-leave {
+    transform: translateX(0);
+}
+.image-leave-to {
+    transform: translateX(-100%);
+}

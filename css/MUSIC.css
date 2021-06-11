@@ -1,0 +1,455 @@
+::-webkit-scrollbar{/*没有滚动条也能滚动*/
+    display: none
+}
+
+#musicdiv{
+    margin: 0;
+    padding:0;
+    position: fixed;
+    width: 100%;
+    height:100%;
+    background-color:#FFFFFF;
+    
+    
+}
+#musicdiv>.backgroud{
+    width:100%;
+    height: 100%;
+   background-color:#FFFFFF ;
+   opacity: 0.8;
+    z-index: -1;
+    overflow: auto;
+    background-image:url('./image/背景.jpg') ;
+}
+
+/*辅助框轮播*/
+#musicdiv>.backgroud>.backgroud1{
+    position: absolute;
+    top:50px;
+    opacity: 0.8;
+    z-index: -2;
+
+    width: 100%;
+    height: 34%;
+
+}
+#musicdiv>.backgroud>.backgroud1 img{
+    width: 100%;
+    height: 100%;
+}
+#musicdiv>.backgroud>.backgroud1 li{
+    width: 100%;
+    height: 100%;
+    
+    color: white;
+    position: absolute;
+}
+#musicdiv>.backgroud>.backgroud1 ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.backgroud>.backgroud1>.nav{
+    background-color: #c3c3c3;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+   padding: 0 8px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+.backgroud>.backgroud1>.active{
+    opacity: 1;
+}
+#musicdiv>.backgroud>.backgroud1 li div{
+    margin-top: -30px;
+}
+.backgroud>.backgroud1>.image-enter-active {
+    transition: all 1s linear
+}
+.backgroud>.backgroud1>.image-leave-active {
+    transition: all 1s linear;
+}
+.image-enter-to {
+    transform: translateX(0);
+}
+.image-enter {
+    transform: translateX(100%);
+}
+.image-leave {
+    transform: translateX(0);
+}
+.image-leave-to {
+    transform: translateX(-100%);
+}
+/*辅助框轮播结束地方*/
+#musicdiv>.ss{
+    position: fixed;
+    left: 0;
+    top:30%;
+    height: 40%;
+    width: 20%;
+    text-align: center;
+    font-size: xx-large;
+    color:white;
+    opacity: 0.5;
+    z-index: 10;
+    
+}
+#musicdiv>.backgroud>.pl{
+    position: fixed;
+    left: 80%;
+    top:50%;
+    height: 40%;
+    width: 15%;
+   
+    opacity: 0.5;
+    border: 5px solid black;
+    text-align: center;
+    
+    font-size: xx-large;
+    color:white;
+    
+}
+#musicdiv>.backgroud>.gc{
+    position: fixed;
+    left:35%;
+    top:70%;
+    height:100%;
+    width: 30%;
+    
+    opacity: 0.3;
+    
+    text-align: center;
+    
+    font-size: xx-large;
+    color:white;
+    
+}
+
+#musicdiv>.showdiv{
+    position: absolute;
+    top:50px;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 50;
+    display: none;
+}
+#musicdiv>.musicperson{
+    position: absolute;
+    z-index: 50;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    right: 20%;
+}
+#musicdiv>.musicperson img{
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+#musicdiv>.navigate{
+    position: absolute;
+    top:0;
+    width:100%;
+    height: 50px;
+    text-align: center;
+    font-size: x-large;
+    line-height: 50px;
+    background-color:#000000;
+
+}
+#musicdiv>.navigate a{
+    text-decoration: none;
+    margin: 6rem;
+    color:#FFFFFF;
+    
+    
+}
+/*轮播*/
+#musicdiv>.lunbo{
+    position: absolute;
+    top:50px;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    border: 5px solid white;
+}
+#musicdiv>.lunbo img{
+    width: 100%;
+    height: 100%;
+}
+#musicdiv>.lunbo li{
+    width: 100%;
+    height: 100%;
+    
+    color: white;
+    position: absolute;
+}
+#musicdiv>.lunbo ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.nav{
+    background-color: #c3c3c3;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+   padding: 0 8px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+.active{
+    opacity: 1;
+}
+#musicdiv>.lunbo li div{
+    margin-top: -30px;
+}
+.image-enter-active {
+    transition: all 1s linear
+}
+.image-leave-active {
+    transition: all 1s linear;
+}
+.image-enter-to {
+    transform: translateX(0);
+}
+.image-enter {
+    transform: translateX(100%);
+}
+.image-leave {
+    transform: translateX(0);
+}
+.image-leave-to {
+    transform: translateX(-100%);
+}
+
+/*轮播样式结束地方*/
+#musicdiv>.left{
+    position: fixed;
+    width:20%;
+    height: 100%;
+    top: 50px;
+    background-color: black;
+    opacity: 0.8;
+    
+}
+#musicdiv>.left>._textparent{
+    position: fixed;
+    width:20%;
+    top: 75px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+
+    
+}
+#musicdiv>.left>._textparent>.sousuo{
+    width:22px;
+    height: 23px;
+    margin: 1rem;
+    background-color:black ;
+    
+
+    
+}
+#musicdiv>.left>._textparent>.sousuo img{
+    width: 30px;
+    height: 25px;
+    border-radius: 50%;/*把图片设置为圆形*/
+
+
+}
+#musicdiv>.left>._textparent>._text{
+    width: 60%;
+    height: 20px;
+}
+#musicdiv>.left>._list{
+    position: fixed;
+    left:0px;
+    width: 20%;
+    height:80%;
+    top:100px;
+    overflow: auto;
+    
+    
+    
+
+}
+#musicdiv>.left>._list li{
+    list-style-type: circle;
+    font-size: small;
+    cursor: pointer;
+    margin: 1.5rem;
+    color: white;
+    
+    
+}
+#musicdiv>.left>._list a{
+    text-decoration: none;
+    color: white;
+}
+#musicdiv>.left>._list span{
+    
+    color:red;
+}
+#musicdiv>._musicpic{
+    position: absolute;
+    left:35%;
+    top:40%;
+    height:100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    
+
+}
+/*audio样式*/
+#musicdiv>.btn-audio{
+    left: 25%;
+    bottom: 0;
+    width:50%;
+    height: 5%;
+    border: 1px solid #ebebeb;
+    background-color: #fdfdfd;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    position: absolute;
+}
+#musicdiv>.btn-audio>.mp3Box{
+    width: 2.8rem;
+    height: 2.8rem;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    background:url("image/播放按钮.jpg") no-repeat center bottom;
+    background-size:cover;
+    z-index: 100;
+    opacity: 0.8;
+    border-radius: 50%;
+ 
+}
+#musicdiv>.btn-audio>.if{
+    float: left;
+    width: 80%;
+    height: 100%;
+}     
+
+/*audio样式结束*/
+#musicdiv>._musicpic>._picbackgroud{
+ 
+    width: 200px;
+    height:200px;
+    border-radius: 50%;/*把图片设置为圆形*/
+    border: 4px solid grey;
+    margin: 0.4rem;
+    z-index: 20;
+    
+}
+#musicdiv>.playing img{
+    /*设置animation函数让图片旋转，img后还可加伪类hover，onclick，active等可以定义鼠标触发animation*/
+    animation: rot_test 3s infinite linear;/*infinite和linear确保旋转不停下来*/
+}
+@keyframes rot_test{/*@keyframes定义关键帧，改变图片角度*/
+    0%{
+        transform: rotate(0deg);
+
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#musicdiv>._musicpic>.musiclyric{
+    position: absolute;
+    overflow:auto;
+    top:200px;
+    width:300px;
+    height: 100%;
+    text-align: center;
+   
+
+
+    
+}
+#musicdiv>._musicpic>.musiclyric>.turemusiclyric{
+    position: absolute;
+    top:100px;
+    width: 300px;
+    color: #FFFFFF;
+   
+    
+    
+}
+#musicdiv>._musicpic>.musiclyric li{
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+#musicdiv>.comments{
+    position: absolute;
+    left: 75%;
+    top:40%;
+    overflow-y:auto;/*这样设置当不超过时不会显示滚动条*/
+    overflow-x:auto;
+    height: 100%;
+    width: 25%;
+    
+    opacity: 0.8;
+    padding: 10px;
+}
+#musicdiv>.comments li{
+    list-style-type:circle;
+    margin: 1.5rem;
+    color: #FFFFFF;
+    
+}
+#musicdiv>._video{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: 20%;
+    display: flex;
+    
+}
+#musicdiv>._video>.mv{
+   width: 100%;
+   
+    
+    
+    
+}
+/*设置关闭视频按钮样式*/
+#musicdiv>._video>.dask{
+    position: fixed;
+    top:  80%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color:black;
+    text-align: center;
+    line-height: 50px;
+    color: wheat;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+  

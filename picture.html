@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写真</title>
+    <link rel="stylesheet" type="text/css" href="./css/picture.css"/>
+</head>
+<body>
+
+    <div id="app">
+        <!--辅助框-->
+        <div class="backgroud"></div>
+        <!--隐藏框-->
+        <div class="showdiv"  ref="showdiv"> </div>
+        <!--图标框-->
+        <div class="musicperson">
+            <img src="./image/preson.jpg" alt="">
+    
+        </div>
+        <div class="musicdiv">
+            <!--导航框-->
+            <div class="navigate">
+                <a href="./网易云首页.html">首页</a>
+                <a href="./image.html">推荐</a>
+                <a href="./picture.html">写真</a>
+            </div>
+        </div>
+
+            <!-- 写真框 -->
+            <div class="picture">
+                <!-- 第一行图片 -->
+                <div class="picture1">
+                    <img src="./image/泰勒斯威夫特.jpg" alt="">
+                    <img src="./image/碧莉.jpg" alt="">
+                    <img src="./image/民谣男歌手.jpg" alt="">
+                </div>
+                
+                <!-- 第二行图片 -->
+                <div class="picture2">
+                    <img src="./image/戳爷2.jpg" alt="">
+                    <img src="./image/iu.jpg" alt="">
+                    <img src="./image/欧美女歌手.jpg" alt="">
+                 </div>                         
+            </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        //鼠标移上图标框显示隐藏框
+        $(".musicperson").mouseover(function(){
+            
+            $(".showdiv").slideDown();
+            $(".showdiv").css("display","block");
+            
+        })
+        $(".showdiv").mouseout(function(){
+            
+            $(".showdiv").slideUp();
+            $(".showdiv").css("display","block");
+            
+        })
+       
+    
+    </script>
+</body>
+</html>
